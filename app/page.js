@@ -1,6 +1,11 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
+import heroIllustration from '../assets/Illustration 1.png';
+import featureIllustration from '../assets/Illustration 2.png';
+import planBoxImage from '../assets/Free.png';
+import mapImage from '../assets/Huge Global.png';
 
 const Check = () => <span className="check">✓</span>;
 
@@ -10,17 +15,14 @@ function Logo() {
 
 function HeroArt() {
   return <div className="hero-art" aria-hidden="true">
-    <div className="world-line one" /><div className="world-line two" />
-    <div className="hero-person person-a"><i /><b /></div>
-    <div className="hero-person person-b"><i /><b /></div>
-    <div className="device"><span /><span /><span /></div>
-    <div className="shield">✓</div>
-    <div className="signal"><i /><i /><i /></div>
+    <Image src={heroIllustration} alt="Hero illustration" className="hero-art-image" />
   </div>;
 }
 
 function FeatureArt() {
-  return <div className="feature-art" aria-hidden="true"><div className="feature-laptop"><div className="laptop-screen"><span>●</span><i /><b /></div></div><div className="plant"><i /><i /><i /></div><div className="feature-person"><i /><b /></div></div>;
+  return <div className="feature-art" aria-hidden="true">
+    <Image src={featureIllustration} alt="Feature illustration" className="feature-art-image" />
+  </div>;
 }
 
 export default function Home() {
@@ -49,9 +51,9 @@ export default function Home() {
       ['Free Plan', ['Unlimited Bandwitch', 'Encrypted Connection', 'No Traffic Logs', 'Works on All Devices'], 'Free'],
       ['Standard Plan', ['Unlimited Bandwitch', 'Encrypted Connection', 'Yes Traffic Logs', 'Works on All Devices', 'Connect Anyware'], '$9 <small>/ mo</small>'],
       ['Premium Plan', ['Unlimited Bandwitch', 'Encrypted Connection', 'Yes Traffic Logs', 'Works on All Devices', 'Connect Anyware', 'Get New Features'], '$12 <small>/ mo</small>'],
-    ].map(([name, benefits, price]) => <article className={`plan ${name === 'Premium Plan' ? 'featured' : ''}`} key={name}><div className="plan-box">▣</div><h3>{name}</h3><ul>{benefits.map((item) => <li key={item}><Check />{item}</li>)}</ul><div className="plan-bottom"><h3 dangerouslySetInnerHTML={{ __html: price }} /><button className={name === 'Premium Plan' ? 'select selected' : 'select'} onClick={() => notify(`${name} selected — demo only.`)}>Select</button></div></article>)}</div></div></section>
+    ].map(([name, benefits, price]) => <article className={`plan ${name === 'Premium Plan' ? 'featured' : ''}`} key={name}><div className="plan-box"><Image src={planBoxImage} alt={`${name} plan icon`} className="plan-box-image" /></div><h3>{name}</h3><ul>{benefits.map((item) => <li key={item}><Check />{item}</li>)}</ul><div className="plan-bottom"><h3 dangerouslySetInnerHTML={{ __html: price }} /><button className={name === 'Premium Plan' ? 'select selected' : 'select'} onClick={() => notify(`${name} selected — demo only.`)}>Select</button></div></article>)}</div></div></section>
 
-    <section className="network container"><div className="section-heading"><h2>Huge Global Network<br />of Fast VPN</h2><p>See <strong>LaslesVPN</strong> everywhere to make it easier for you when you move locations.</p></div><div className="map" aria-label="Global network map"><span className="pin p1" /><span className="pin p2" /><span className="pin p3" /><span className="pin p4" /><span className="pin p5" /><span className="pin p6" /></div><div className="brand-row"><b>NETFLIX</b><b>reddit</b><b>amazon</b><b>discord</b><b>spotify</b></div></section>
+    <section className="network container"><div className="section-heading"><h2>Huge Global Network<br />of Fast VPN</h2><p>See <strong>LaslesVPN</strong> everywhere to make it easier for you when you move locations.</p></div><div className="map" aria-label="Global network map"><Image src={mapImage} alt="Global network" fill className="map-image" priority /><span className="pin p1" /><span className="pin p2" /><span className="pin p3" /><span className="pin p4" /><span className="pin p5" /><span className="pin p6" /></div><div className="brand-row"><b>NETFLIX</b><b>reddit</b><b>amazon</b><b>discord</b><b>spotify</b></div></section>
 
     <section className="testimonials" id="testimonials"><div className="container"><div className="section-heading"><h2>Trusted by Thousands of<br />Happy Customer</h2><p>These are the stories of our customers who have joined us with great pleasure when using this crazy feature.</p></div><div className="testimonial-grid">{testimonials.map((person, i) => <article className={i === activeTestimonial ? 'testimonial active' : 'testimonial'} key={person.name}><div className="customer"><span className="avatar">{person.initials}</span><div><strong>{person.name}</strong><small>{person.city}</small></div><span className="rating">{person.score} ★</span></div><p>{person.copy}</p></article>)}</div><div className="slider-controls"><span className="dots">{testimonials.map((_, i) => <button key={i} onClick={() => setActiveTestimonial(i)} aria-label={`Show testimonial ${i + 1}`} className={i === activeTestimonial ? 'dot on' : 'dot'} />)}</span><span><button className="circle" onClick={() => setActiveTestimonial((activeTestimonial + 2) % 3)} aria-label="Previous testimonial">←</button><button className="circle filled" onClick={() => setActiveTestimonial((activeTestimonial + 1) % 3)} aria-label="Next testimonial">→</button></span></div></div></section>
 
