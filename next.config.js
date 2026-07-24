@@ -2,7 +2,7 @@
 const nextConfig = {
   output: 'export',
   basePath: '/laslesvpn-landing',
-  assetPrefix: '/laslesvpn-landing/',
+  assetPrefix: '/laslesvpn-landing',
   trailingSlash: true,
 };
 
